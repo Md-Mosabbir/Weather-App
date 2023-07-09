@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <section class="weather-info">
+        <div class="weather-card">
+          <input type="text" id="city-input" value="london" />
+          <button id="submit-city">Search</button>
+        </div>
+        <div class="extra-info-card"></div>
+      </section>
+      <section class="weather-info">
+        <div class="today"></div>
+        <div class="seven-days"></div>
+      </section>
+    </main>
+  </body>
   <script src="bundle.js"></script>
 </html>
