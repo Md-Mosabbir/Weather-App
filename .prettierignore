@@ -1,0 +1,5 @@
+#Ignoring json files
+*.json
+
+#Ignoring webpack.config.js files
+webpack.config.js
