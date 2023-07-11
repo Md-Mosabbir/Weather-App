@@ -113,16 +113,21 @@ function getExtraWeatherInfo(info) {
 
 async function getWeatherInfo() {
   const API_KEY = "bb2c9baed05042f9857155341231206"
-  const weatherInfo = await fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityInput.value}`,
+  try {
+    const weatherInfo = await fetch(
+      `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityInput.value}`,
 
-    { mode: "cors" },
-  )
-  const info = await weatherInfo.json()
+      { mode: "cors" },
+    )
 
-  console.log(info)
-  getWeatherCardInfo(info)
-  getExtraWeatherInfo(info)
+    const info = await weatherInfo.json()
+    document.querySelector("#error").textContent = ""
+    console.log(info)
+    getWeatherCardInfo(info)
+    getExtraWeatherInfo(info)
+  } catch (error) {
+    document.querySelector("#error").textContent = "Please Try Again"
+  }
 }
 
 submitCity.addEventListener("click", () => {
