@@ -3,21 +3,7 @@ import "./style.css"
 const cityInput = document.querySelector("#city-input")
 const submitCity = document.getElementById("submit-city")
 
-// console.log the weather api info
-
-async function getWeatherInfo() {
-  const API_KEY = "bb2c9baed05042f9857155341231206"
-  const weatherInfo = await fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityInput.value}`,
-
-    { mode: "cors" },
-  )
-  const info = await weatherInfo.json()
-
-  console.log(info)
-  getWeatherCardInfo(info)
-  getExtraWeatherInfo(info)
-}
+// Weather Card ----------------------
 
 function displayWeatherCard(
   image,
@@ -29,11 +15,11 @@ function displayWeatherCard(
 ) {
   // Selecting all necessary HTML Elements
 
-  const setImage = document.querySelector("#image-of-weather")
-  const setTemp = document.querySelector("#temperature")
-  const setCondition = document.querySelector("#condition")
-  const setLocation = document.querySelector("#location")
-  const setDate = document.querySelector("#date")
+  const setImage = document.getElementById("image-of-weather")
+  const setTemp = document.getElementById("temperature")
+  const setCondition = document.getElementById("condition")
+  const setLocation = document.getElementById("location")
+  const setDate = document.getElementById("date")
   // Setting all the info to the Weather Card
   setImage.src = image
   setTemp.textContent = temperature
@@ -65,10 +51,43 @@ function getWeatherCardInfo(info) {
   )
 }
 
+// Extra Info Card ----------------------
+
+function displayExtraWeatherInfo(
+  wind,
+  uv,
+  sunrise,
+  sunset,
+  humidity,
+  visibility,
+  feels,
+) {
+  // Selecting all necessary HTML Elements
+
+  const setWindStatus = document.querySelector("#wind-status")
+  const setUV = document.querySelector("#uv-index")
+  const setSunrise = document.querySelector("#sunrise")
+  const setSunset = document.querySelector("#sunset")
+  const setHumidity = document.querySelector("#humidity")
+  const setVisibilty = document.querySelector("#visibility")
+  const setFeelsLike = document.querySelector("#feels-like")
+
+  // Setting all the info to the extra Info Card
+
+  setWindStatus.textContent = wind
+  setUV.textContent = uv
+
+  setSunrise.textContent = sunrise
+  setSunset.textContent = sunset
+  setHumidity.textContent = humidity
+  setVisibilty.textContent = visibility
+  setFeelsLike.textContent = feels
+}
+
 function getExtraWeatherInfo(info) {
   const data = info
 
-  const requiredData = {
+  const requiredExtraData = {
     windSpeed: data.current.wind_kph,
     uvIndex: data.current.uv,
     sunRise: data.forecast.forecastday[0].astro.sunrise, // problem
@@ -78,11 +97,32 @@ function getExtraWeatherInfo(info) {
     feelsLikeCel: data.current.feelslike_c,
     feelsLikeFel: data.current.feelslike_f,
   }
-  console.log(requiredData)
+  console.log(requiredExtraData)
+  displayExtraWeatherInfo(
+    requiredExtraData.windSpeed,
+    requiredExtraData.uvIndex,
+    requiredExtraData.sunRise,
+    requiredExtraData.sunSet,
+    requiredExtraData.humidity,
+    requiredExtraData.visibility,
+    requiredExtraData.feelsLikeCel,
+  )
 }
-function displayExtraWeatherInfo(wind, uv, sun, humidity, visibility, feels) {
-  // Selecting all necessary HTML Elements
-  // Setting all the info to the Weather Card
+
+// console.log the weather api info
+
+async function getWeatherInfo() {
+  const API_KEY = "bb2c9baed05042f9857155341231206"
+  const weatherInfo = await fetch(
+    `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityInput.value}`,
+
+    { mode: "cors" },
+  )
+  const info = await weatherInfo.json()
+
+  console.log(info)
+  getWeatherCardInfo(info)
+  getExtraWeatherInfo(info)
 }
 
 submitCity.addEventListener("click", () => {
