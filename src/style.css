@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  background-color: aqua;
+  height: 100svh;
+}
+
+.weather-info,
+.weather-info > div {
+  border: 1px solid red;
+}
+.weather-info {
+  display: flex;
+  gap: 1.5rem;
+  padding: 10px;
+}
+
+.weather-card {
+  min-height: 400px;
+  justify-content: space-around;
+  padding: 13px;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.search {
+  margin-left: auto;
+}
+#temperature {
+  font-size: 3rem;
+}
+
+.condition {
+  padding-bottom: 20px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid black;
+}
+
+.extra-info-card {
+  width: 100%;
+}
+.info {
+  border: 1px solid burlywood;
+  padding: 10px;
+}
+.info-1 {
+  display: flex;
+  height: 70%;
+  justify-content: space-around;
+
+  gap: 0.5rem;
+}
+.info-1 > div {
+  border: 1px solid black;
+  flex: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.info-1 > div > p,
+.info-2 > div > p {
+  font-size: 2.5rem;
+}
+
+.info-2 {
+  display: flex;
+  height: 30%;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+.info-2 > div {
+  border: 1px solid black;
+  flex: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
