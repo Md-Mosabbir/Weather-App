@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-param-reassign */
 import "./style.css"
 import "@fortawesome/fontawesome-free/js/all.js"
 
@@ -71,7 +73,6 @@ function getWeatherCardInfo(info) {
     date: data.current.last_updated,
   }
 
-  console.log(requiredData)
   displayWeatherCard(
     requiredData.weatherImage,
     requiredData.temperatureCel,
@@ -117,13 +118,13 @@ function displayExtraWeatherInfo(
   setFeelsLike.addEventListener("click", feelsLikeClickListener)
   // Setting all the info to the extra Info Card
 
-  setWindStatus.textContent = wind
+  setWindStatus.textContent = `${wind} km/h`
   setUV.textContent = uv
 
   setSunrise.textContent = sunrise
   setSunset.textContent = sunset
-  setHumidity.textContent = humidity
-  setVisibilty.textContent = visibility
+  setHumidity.textContent = `${humidity}%`
+  setVisibilty.textContent = `${visibility} km`
   manageCelAndFah(setFeelsLike, feelsC, feelsF)
 }
 
@@ -140,7 +141,7 @@ function getExtraWeatherInfo(info) {
     feelsLikeCel: data.current.feelslike_c,
     feelsLikeFel: data.current.feelslike_f,
   }
-  console.log(requiredExtraData)
+
   displayExtraWeatherInfo(
     requiredExtraData.windSpeed,
     requiredExtraData.uvIndex,
@@ -166,12 +167,11 @@ async function getWeatherInfo() {
 
     const info = await weatherInfo.json()
     document.querySelector("#error").textContent = ""
-    console.log(info)
+
     getWeatherCardInfo(info)
     getExtraWeatherInfo(info)
   } catch (error) {
     document.querySelector("#error").textContent = "Please Try Again"
-    console.log(error)
   }
 }
 
@@ -187,3 +187,18 @@ submitCity.addEventListener("click", () => {
 })
 
 getWeatherInfo() // for now
+
+// ------- BLOB Logic-------
+
+const blob = document.getElementById("blob")
+
+document.body.onpointermove = (event) => {
+  const { clientX, clientY } = event
+  blob.animate(
+    {
+      left: `${clientX}px`,
+      top: `${clientY}px`,
+    },
+    { duration: 2500, fill: "forwards" },
+  )
+}
