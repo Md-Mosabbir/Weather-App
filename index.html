@@ -8,57 +8,59 @@
   </head>
   <body>
     <main>
-      <section class="weather-info">
-        <div class="weather-card">
-          <div class="search">
+      <div class="weather-card">
+        <div class="search">
+          <div>
             <input type="text" id="city-input" value="london" />
-            <button id="submit-city">Search</button>
+            <button id="submit-city"><i class="fas fa-search"></i></button>
           </div>
-          <div>
-            <img src="" alt="" id="image-of-weather" />
-          </div>
-          <div>
-            <p id="temperature"></p>
-          </div>
-          <div><p id="condition"></p></div>
-          <div><p id="location"></p></div>
-          <div><p id="date"></p></div>
+          <p id="error"></p>
         </div>
-        <div class="extra-info-card">
-          <div class="info-1">
-            <div class="wind-status">
-              <h2>Wind Status</h2>
-              <p id="wind-status"></p>
-            </div>
-            <div class="uv-index">
-              <h2>UV Index</h2>
-              <p id="uv-index"></p>
-            </div>
-            <div class="sun">
-              <h2>Sunrise & Sunset</h2>
-              <p id="sun"></p>
-            </div>
+        <div>
+          <img src="" alt="" id="image-of-weather" />
+        </div>
+        <div>
+          <p id="temperature" class="temp">--</p>
+        </div>
+        <div class="condition"><p id="condition"></p></div>
+        <div><p id="location"></p></div>
+        <div>
+          <p id="date"></p>
+        </div>
+      </div>
+      <div class="extra-info-card">
+        <div class="info info-1">
+          <div class="wind-status">
+            <h2>Wind Status</h2>
+            <p id="wind-status"></p>
           </div>
-          <div class="info-2">
-            <div class="humidity">
-              <h2>Humidity</h2>
-              <p id="humidity"></p>
-            </div>
-            <div class="visibility">
-              <h2>Visibility</h2>
-              <p id="visibility"></p>
-            </div>
-            <div class="feels-like">
-              <h2>Feels Like</h2>
-              <p id="feels-like"></p>
+          <div class="uv-index">
+            <h2>UV Index</h2>
+            <p id="uv-index"></p>
+          </div>
+          <div class="sun">
+            <h2>Sunrise & Sunset</h2>
+            <div class="sun-info-container">
+              <p id="sunrise"></p>
+              <p id="sunset"></p>
             </div>
           </div>
         </div>
-      </section>
-      <section class="weather-info-today-and-future">
-        <div class="today"></div>
-        <div class="seven-days"></div>
-      </section>
+        <div class="info info-2">
+          <div class="humidity">
+            <h2>Humidity</h2>
+            <p id="humidity"></p>
+          </div>
+          <div class="visibility">
+            <h2>Visibility</h2>
+            <p id="visibility"></p>
+          </div>
+          <div class="feels-like">
+            <h2>Feels Like</h2>
+            <p id="feels-like" class="temp"></p>
+          </div>
+        </div>
+      </div>
     </main>
   </body>
   <script src="bundle.js"></script>
