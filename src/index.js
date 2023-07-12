@@ -8,7 +8,7 @@ const submitCity = document.getElementById("submit-city")
 let tempClickListener = null
 let feelsLikeClickListener = null
 
-// Weather Card ----------------------
+// Weather Card ------------------------
 
 function manageCelAndFah(element, cel, fah) {
   let check = true
