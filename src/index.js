@@ -1,13 +1,33 @@
 import "./style.css"
+import "@fortawesome/fontawesome-free/js/all.js"
 
 const cityInput = document.querySelector("#city-input")
 const submitCity = document.getElementById("submit-city")
+let tempClickListener = null
+let feelsLikeClickListener = null
 
 // Weather Card ----------------------
 
+function manageCelAndFah(element, cel, fah) {
+  let check = true
+
+  if (!element.classList.contains("cel")) {
+    check = false
+  } else if (element.classList.contains("cel")) {
+    check = true
+  }
+
+  if (check === true) {
+    element.textContent = `${cel}°C`
+  } else if (check === false) {
+    element.textContent = `${fah}°F`
+  }
+}
+
 function displayWeatherCard(
   image,
-  temperature,
+  tempC,
+  tempF,
   condition,
   city,
   country,
@@ -20,9 +40,20 @@ function displayWeatherCard(
   const setCondition = document.getElementById("condition")
   const setLocation = document.getElementById("location")
   const setDate = document.getElementById("date")
+
+  if (tempClickListener) {
+    setTemp.removeEventListener("click", tempClickListener)
+  }
+
+  tempClickListener = (e) => {
+    e.target.classList.toggle("cel")
+    manageCelAndFah(setTemp, tempC, tempF)
+  }
+  setTemp.addEventListener("click", tempClickListener)
+
   // Setting all the info to the Weather Card
   setImage.src = image
-  setTemp.textContent = temperature
+  manageCelAndFah(setTemp, tempC, tempF)
   setCondition.textContent = condition
   setLocation.textContent = `${city}, ${country}`
   setDate.textContent = date
@@ -44,6 +75,7 @@ function getWeatherCardInfo(info) {
   displayWeatherCard(
     requiredData.weatherImage,
     requiredData.temperatureCel,
+    requiredData.temperatureF,
     requiredData.condition,
     requiredData.city,
     requiredData.country,
@@ -60,7 +92,8 @@ function displayExtraWeatherInfo(
   sunset,
   humidity,
   visibility,
-  feels,
+  feelsC,
+  feelsF,
 ) {
   // Selecting all necessary HTML Elements
 
@@ -72,6 +105,16 @@ function displayExtraWeatherInfo(
   const setVisibilty = document.querySelector("#visibility")
   const setFeelsLike = document.querySelector("#feels-like")
 
+  if (feelsLikeClickListener) {
+    setFeelsLike.removeEventListener("click", feelsLikeClickListener)
+  }
+
+  // Add the new event listener and update the feelsLikeClickListener reference
+  feelsLikeClickListener = (e) => {
+    e.target.classList.toggle("cel")
+    manageCelAndFah(setFeelsLike, feelsC, feelsF)
+  }
+  setFeelsLike.addEventListener("click", feelsLikeClickListener)
   // Setting all the info to the extra Info Card
 
   setWindStatus.textContent = wind
@@ -81,7 +124,7 @@ function displayExtraWeatherInfo(
   setSunset.textContent = sunset
   setHumidity.textContent = humidity
   setVisibilty.textContent = visibility
-  setFeelsLike.textContent = feels
+  manageCelAndFah(setFeelsLike, feelsC, feelsF)
 }
 
 function getExtraWeatherInfo(info) {
@@ -106,6 +149,7 @@ function getExtraWeatherInfo(info) {
     requiredExtraData.humidity,
     requiredExtraData.visibility,
     requiredExtraData.feelsLikeCel,
+    requiredExtraData.feelsLikeFel,
   )
 }
 
@@ -127,9 +171,19 @@ async function getWeatherInfo() {
     getExtraWeatherInfo(info)
   } catch (error) {
     document.querySelector("#error").textContent = "Please Try Again"
+    console.log(error)
   }
 }
 
 submitCity.addEventListener("click", () => {
+  const temp = document.querySelector("#temperature")
+  const feels = document.querySelector("#feels-like")
+
+  if (!temp.classList.contains("cel") || !feels.classList.contains("cel")) {
+    document.querySelector("#temperature").classList.add("cel")
+    document.querySelector("#feels-like").classList.add("cel")
+  }
   getWeatherInfo()
 })
+
+getWeatherInfo() // for now
