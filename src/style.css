@@ -20,6 +20,7 @@
 html,
 body {
   height: 100vh;
+  overflow: hidden;
 }
 
 main {
@@ -71,6 +72,10 @@ main {
 
 .search {
   margin-left: auto;
+  z-index: 800;
+}
+#error {
+  color: red;
 }
 
 #city-input {
@@ -110,7 +115,10 @@ main {
   transition: color 0.4s ease-in-out;
   user-select: none;
   transition: text-shadow 0.2s ease-in-out;
+  position: relative;
+  z-index: 800;
 }
+
 #temperature:hover,
 #feels-like:hover {
   cursor: pointer;
@@ -211,4 +219,36 @@ main {
   transition: color 0.4s ease-in-out;
   user-select: none;
   transition: text-shadow 0.2s ease-in-out;
+  z-index: 800;
+}
+
+/* =============== BLOB ================= ======= */
+
+#blob {
+  position: absolute;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  background-color: pink;
+  height: 500px;
+  left: 50%;
+  right: 50%;
+  translate: -50% -50%;
+  background: linear-gradient(to right, aquamarine, mediumpurple);
+  animation: rotate 20s infinite;
+  filter: blur(200px);
+  opacity: 0.7;
+}
+
+@keyframes rotate {
+  from {
+    rotate: 0deg;
+  }
+
+  50% {
+    scale: 1 1.5;
+  }
+
+  to {
+    rotate: 360deg;
+  }
 }
