@@ -186,8 +186,6 @@ submitCity.addEventListener("click", () => {
   getWeatherInfo()
 })
 
-getWeatherInfo() // for now
-
 // ------- BLOB Logic-------
 
 const blob = document.getElementById("blob")
