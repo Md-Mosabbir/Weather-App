@@ -1,11 +1,214 @@
-:root {
-  --primary-color: #191b1f;
-  --secondary-color: #0f1115;
-  --accent-color: #ffff00;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #191b1f;
+  --secondary-color: #0f1115;
+  --accent-color: #ffff00;
+  --neutral-white: #fff;
+  --neutral-black: #000;
+  --search-colour: #800080;
+
+  --font-big: 3rem;
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+main {
+  background-color: var(--primary-color);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+  padding: 20px;
+}
+
+/* ================    Weather Card    ======================= */
+.weather-card {
+  min-width: 500px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.weather-card::before {
+  border-radius: inherit;
+  background: radial-gradient(
+    800px circle at 100px 100px,
+    rgba(97, 130, 228, 0.06),
+    transparent 40%
+  );
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.weather-card,
+.extra-info-card {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 6px rgba(47, 47, 47, 0.8);
+  max-height: 600px;
+  border-radius: 1rem;
+  padding: 1.2rem;
+  color: var(--neutral-white);
+  font-family: "Roboto", sans-serif;
+}
+
+/* Search button ----------------------*/
+
+.search {
+  margin-left: auto;
+}
+
+#city-input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid var(--search-colour);
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  color: var(--neutral-white);
+}
+
+#submit-city {
+  width: 35px;
+  height: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background-color: var(--search-colour);
+  color: var(--neutral-white);
+  transition: color 0.3s ease-in;
+  transition: background-color 0.2s ease-in;
+}
+
+#submit-city:hover {
+  background-color: var(--neutral-white);
+  color: var(--search-colour);
+  cursor: pointer;
+}
+/* -------------- */
+
+#image-of-weather {
+  scale: 1.6;
+}
+
+#temperature {
+  font-size: var(--font-big);
+  transition: color 0.4s ease-in-out;
+  user-select: none;
+  transition: text-shadow 0.2s ease-in-out;
+}
+#temperature:hover,
+#feels-like:hover {
+  cursor: pointer;
+  color: var(--accent-color);
+  text-shadow: 0 0 6px rgba(255, 255, 0, 0.8);
+}
+
+#condition {
+  padding: 0.3rem;
+  padding-bottom: 1.2rem;
+
+  border: none;
+  border-bottom: 2px solid var(--neutral-white);
+}
+
+/* ================================================ */
+
+/* >>>>>>>>>>>>>>   Extra info card              >>>>>>>>>>>>>> */
+.extra-info-card {
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.extra-info-card h2 {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+.extra-info-card h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: var(--neutral-white);
+  transition: width 0.2s ease-in-out;
+}
+
+.extra-info-card h2:hover::after {
+  width: 55%;
+}
+
+.extra-info-card p {
+  font-size: var(--font-big);
+}
+
+.info {
+  display: flex;
+  gap: 0.8rem;
+}
+.info > div {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex: 33%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.info > div::before {
+  border-radius: inherit;
+  background: radial-gradient(
+    800px circle at 100px 100px,
+    rgba(170, 170, 170, 0.06),
+    transparent 40%
+  );
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.info-1 {
+  height: 70%;
+}
+.info-2 {
+  height: 30%;
+}
+
+.sun-info-container {
+  display: flex;
+  justify-content: space-between;
+}
+.sun-info-container p {
+  font-size: 2.1rem;
+}
+
+#feels-like {
+  transition: color 0.4s ease-in-out;
+  user-select: none;
+  transition: text-shadow 0.2s ease-in-out;
 }
