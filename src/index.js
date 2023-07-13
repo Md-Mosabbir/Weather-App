@@ -158,7 +158,9 @@ function getExtraWeatherInfo(info) {
 
 async function getWeatherInfo() {
   const API_KEY = "bb2c9baed05042f9857155341231206"
+  const loader = document.getElementById("loading-screen")
   try {
+    loader.style.display = "flex"
     const weatherInfo = await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityInput.value}`,
 
@@ -166,7 +168,9 @@ async function getWeatherInfo() {
     )
 
     const info = await weatherInfo.json()
+
     document.querySelector("#error").textContent = ""
+    loader.style.display = "none"
 
     getWeatherCardInfo(info)
     getExtraWeatherInfo(info)
